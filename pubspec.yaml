@@ -76,12 +76,36 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-fonts:
-   - family: HanyiSentyTea
-     fonts:
-        - asset: fonts/HanyiSentyTea.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:
+#  - family : KurewaGothicCjkJp-Regular
+#    fonts:
+#      - asset: fonts/KurewaGothicCjkJp-Regular.ttf
+    - family: HanyiSentyTea
+      fonts:
+        - asset: assets/fonts/HanyiSentyTea.ttf
+#
+    - family: ChenYuluoyan-Thin
+      fonts:
+        - asset: assets/fonts/ChenYuluoyan-Thin.ttf
+#
+    - family: HanyiSentyPea
+      fonts:
+        - asset: assets/fonts/HanyiSentyPea.ttf
+
+    - family: HanyiSentyGoldenBell
+      fonts:
+        - asset: assets/fonts/HanyiSentyGoldenBell.ttf
+
+    - family: HanyiSentyMaruko
+      fonts:
+        - asset: assets/fonts/HanyiSentyMaruko.ttf
+
+    - family: KurewaGothicCjkJp
+      fonts:
+        - asset: assets/fonts/KurewaGothicCjkJp-Regular.ttf
+
+    #
+#     - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage>
   Random random = Random();
   int count = 0;
   Student studentFreshman = Student(name: '', ID: 0);
-  Student studentSophomore = Student(name: '', ID: 0);
+  Student studentSophomore = Student(name: '', ID: 0, family: 0);
   List<Widget> paringList = [];
   bool isLoad = false;
   late AnimationController animationController;
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
     StudentService service = StudentService();
     freshman = service.createClass(namesFreshman, IDsFreshman);
-    sophomore = service.createClass(namesSophomore, IDsSophomore);
+    sophomore = service.createSophomoreClass(namesSophomore, IDsSophomore,family);
 
     animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
@@ -54,33 +54,63 @@ class _HomePageState extends State<HomePage>
             int index = random.nextInt(sophomore.length);
             studentFreshman = freshman[count];
             studentSophomore = sophomore[index];
+
+
             paringList.add(
-              Text(
-                '${studentFreshman.ID} ${studentFreshman.name}',
-                style: const TextStyle(
-                  fontFamily: 'HanyiSentyTea',
-                  fontSize: 20,
-                ),
+              Column(
+                children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+
+                  Text(
+                    '${studentFreshman.ID} ${studentFreshman.name}     ${studentSophomore.family}家     ${studentSophomore.ID} ${studentSophomore.name}',
+                    style: const TextStyle(
+                      fontFamily: 'KurewaGothicCjkJp',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 33,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 300),
+                    child: Divider(
+                      thickness: 2,
+                      color: Color.fromARGB(255, 97, 103, 122),
+                    ),
+                  ),
+
+                ]
               ),
             );
             sophomore.removeAt(index);
             count++;
           });
         },
-        child: Icon(Icons.local_attraction_outlined),
+        child: const Icon(Icons.local_attraction_outlined),
       ),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 39, 40, 41),
-        title: Text(
-          'Freshman & Sophomore',
-          style: GoogleFonts.getFont('Monofett', fontSize: 35),
+        title: Center(
+          child: Text(
+            'Freshman   &   Sophomore',
+            style: GoogleFonts.aboreto(fontSize:30),
+            // style: GoogleFonts.getFont('Monofett', fontSize: 35),
+          ),
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 255, 246, 224),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 40),
         child: Column(
+
           children: [
+            const Text(
+              ' 早安',
+              style: TextStyle(
+                fontFamily: 'ChenYuluoyan-Thin',
+                fontSize: 40.0,
+              ),
+            ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -109,12 +139,16 @@ class _HomePageState extends State<HomePage>
             ),
             Visibility(
               visible: !isLoad,
-              child: Center(
-                child: Expanded(
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 40),
                   child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
                     itemCount: paringList.length,
                     itemBuilder: (context, index) {
-                      return paringList[index];
+                      int reverseIndex = (paringList.length - index -1);
+                      return paringList[reverseIndex];
                     },
                   ),
                 ),
